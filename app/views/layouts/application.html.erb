@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CoinCompass</title>
+  <%= stylesheet_link_tag    'application', media: 'all'%>
+  <%= javascript_include_tag 'application'%>
+
+  <%= stylesheet_link_tag "forem" %>
+  <%= javascript_include_tag "forem" %>
+
+    <!-- Custom Fonts & Icons -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,600,800' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="https://widget.coindesk.com/bpiticker/coindesk-widget.min.js?4996ba"></script>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+ 
+ <%#= render 'layouts/navbar' %>
+  
+  
+  <% flash.each do |name, msg| %>
+    <% if msg.is_a?(String) %>
+      <div class="alert alert-<%= name == :notice ? "success" : "danger" %> alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <%= content_tag :div, msg, :id => "flash_#{name}" %>
+      </div>
+    <% end %>
+  <% end %>
+  
+  <%= render 'layouts/header' %>
+  <% if ['pages','sellers'].include?(params[:controller])%>
+  <%else%>
+    <div class="jumbotron">
+      <div class="container">
+     
+      </div>
+    </div>
+    <div class="offset1 span10">
+  <%end%>
+    
+  <%= yield %>
+ </div>
+  <%= render 'layouts/footer' %>
+
+
+</body>
+</html>
